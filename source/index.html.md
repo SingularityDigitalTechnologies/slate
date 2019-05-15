@@ -1,15 +1,10 @@
 ---
-title: API Reference
+title: Singularity Technologies API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,103 +14,57 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+This is the Singularity Technologies Machine Learning factory API documentation.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Here you will see examples on how to use our API using both cURL and our Command Line Interface (CLI) singularity-cli.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+It is highly recomended to use the CLI to create and manage your workloads.
+
+The API is only accessable through <code>https</code>.
 
 # Authentication
 
-> To authorize, use this code:
+The API use both keys and secrets in conjunction with HMAC signatures to allow access to the API and verify message integrity.
 
-```ruby
-require 'kittn'
+The API expects a valid key and HMAC signature to be included in each request, using the following headers:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+`X-singularity-apikey: key`
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`X-singularity-signature': signature`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>key</code> and <code>signature</code> with your personal API key and generated signature.
 </aside>
 
-# Kittens
+The HMAC uses SHA-512 as its hashing algorithm and the signature pattern is as follows:
 
-## Get All Kittens
+`<method>\n<endpoint>\n<payload>`
 
-```ruby
-require 'kittn'
+This is handled autonomously by the CLI.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+# Ping
 
-```python
-import kittn
+Verify your connection to the API
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+<aside class="notice">This is the only endpoint that does not require a HMAC signature</aside>
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl -X GET "https://api.singularity-technologies.io/ping"
+
+or
+
+singularity-cli ping
 ```
 
-```javascript
-const kittn = require('kittn');
+> This should return the text <code>pong</code>:
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```text
+pong
 ```
 
-> The above command returns JSON structured like this:
+# Batch
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
+## Create a batch
 This endpoint retrieves all kittens.
 
 ### HTTP Request
