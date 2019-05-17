@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Singularity Technologies API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -228,16 +225,57 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#ping" class="toc-h1 toc-link" data-title="Ping">Ping</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#verify-your-connection-to-the-api" class="toc-h2 toc-link" data-title="Verify your connection to the API">Verify your connection to the API</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#batch" class="toc-h1 toc-link" data-title="Batch">Batch</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-batches-for-your-user" class="toc-h2 toc-link" data-title="Get all batches for your user">Get all batches for your user</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#create-a-batch" class="toc-h2 toc-link" data-title="Create a batch">Create a batch</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#cancel-a-batch" class="toc-h2 toc-link" data-title="Cancel a batch">Cancel a batch</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#jobs" class="toc-h1 toc-link" data-title="Jobs">Jobs</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-job" class="toc-h2 toc-link" data-title="Get a Job">Get a Job</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-a-job" class="toc-h2 toc-link" data-title="Cancel a Job">Cancel a Job</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#data" class="toc-h1 toc-link" data-title="Data">Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-data-set" class="toc-h2 toc-link" data-title="Create Data Set">Create Data Set</a>
+                  </li>
+                  <li>
+                    <a href="#get-data-set" class="toc-h2 toc-link" data-title="Get Data Set">Get Data Set</a>
+                  </li>
+                  <li>
+                    <a href="#upload-data-shard" class="toc-h2 toc-link" data-title="Upload Data Shard">Upload Data Shard</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#models" class="toc-h1 toc-link" data-title="Models">Models</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#download-a-model" class="toc-h2 toc-link" data-title="Download a model">Download a model</a>
                   </li>
               </ul>
           </li>
@@ -245,199 +283,279 @@
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>This is the Singularity Technologies Machine Learning factory API documentation.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Here you will see examples on how to use our API using cURL.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>It is highly recomended to use the CLI (singularity-cli) to create and manage your workloads.</p>
+
+<p>The documentation for our CLI can be found here: <cli_docs></p>
+
+<p>The API is only accessable through <code>https</code> for security reasons.</p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>The API use both keys and secrets in conjunction with HMAC signatures to allow access to the API and verify message integrity.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>The API expects a valid key and HMAC signature to be included in each request, using the following headers:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><code>X-singularity-apikey: key</code></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>X-singularity-signature&#39;: signature</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>key</code> and <code>signature</code> with your personal API key and generated signature.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>The HMAC uses SHA-512 as its hashing algorithm and the signature pattern is as follows:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><code>&lt;method&gt;\n&lt;endpoint&gt;\n&lt;payload&gt;</code></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<p>This is handled autonomously by the CLI.</p>
+<h1 id='ping'>Ping</h1><h2 id='verify-your-connection-to-the-api'>Verify your connection to the API</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"https://api.singularity-technologies.io/ping"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>This should return the text <code>pong</code>:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>pong
+</code></pre>
+<aside class="notice">This is the only endpoint that does not require a HMAC signature</aside>
+<h3 id='https-request'>HTTPs Request</h3>
+<p><code>GET https://api.singularity-technologies.io/ping</code></p>
+<h1 id='batch'>Batch</h1><h2 id='get-all-batches-for-your-user'>Get all batches for your user</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X GET <span class="s2">"https://api.singularity-technologies.io/batch/8a76687a-9d77-4231-8a4c-58dbc4c02f1c"</span>
+</code></pre>
+<blockquote>
+<p>Returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8a76687a-9d77-4231-8a4c-58dbc4c02f1c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pilot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-16T10:02:01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"job_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1f177101-7e56-488e-aa15-8bc93499577e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python train.py --architecture classic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"fitness_score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43</span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2762a3d0-beee-4f96-a88e-3301806741e4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python train.py --achitecture deep"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"queued"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processing"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uploading"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"errored"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processing_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">302415</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>This endpoint allows you to check the status of your batches</p>
+<h3 id='https-request-2'>HTTPs Request</h3>
+<p><code>GET https://api.singularity-technologies.io/batch/{batch_id}</code></p>
+
+<aside class="info">Omit <code>batch_id</code> to get all your batches</aside>
+
+<aside class="success">Timestamps are always in UTC and processing_time is to millisecond precision</aside>
+<h2 id='create-a-batch'>Create a batch</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X POST <span class="s2">"https://api.singularity-technologies.io/batch/ -d @body.json"</span>
+</code></pre>
+<blockquote>
+<p>Example Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pilot"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python train.py --architecture classic"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singularitytechnologies/testai"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"latest"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47d2004e-8e08-4fc3-b341-7a3b163e6851"</span><span class="err">`</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python train.py --architecture deep"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singularitytechnologies/testai"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"latest"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47d2004e-8e08-4fc3-b341-7a3b163e6851"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"requisitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gpu"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8a76687a-9d77-4231-8a4c-58dbc4c02f1c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a batch of machine learning model training jobs.</p>
+<h3 id='https-request-3'>HTTPs Request</h3>
+<p><code>POST https://api.singularity-technologies.io/batch</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>mode</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Determines which mode to run batch in, options are: pilot or production</td>
+</tr>
+<tr>
+<td>jobs</td>
+<td>true</td>
+<td>Description of each training job</td>
+</tr>
+<tr>
+<td>requisitions</td>
+<td>true</td>
+<td>Resources required to run each training job</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>RAM is free and automatically assigned based on you CPU and GPU requirements.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<aside class="warning">While we can run jobs on fractional CPUs, GPU requisitions must be whole numbers</aside>
+<h2 id='cancel-a-batch'>Cancel a batch</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X DELETE <span class="s2">"https://api.singularity-technologies.io/batch/8a76687a-9d77-4231-8a4c-58dbc4c02f1c"</span>
+</code></pre>
+<p>This endpoint will cancel all jobs in a batch that have not been processed yet.</p>
+<h3 id='https-request-4'>HTTPs Request</h3>
+<p><code>DELETE https://api.singularity-technologies.io/batch/{batch_id}</code></p>
+<h1 id='jobs'>Jobs</h1>
+<p>Jobs can not be independently lauched, they must be a part of a batch. Single job batches are acceptable.</p>
+<h2 id='get-a-job'>Get a Job</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X GET <span class="s2">"https://api.singularity-technologies.io/job/47d2004e-8e08-4fc3-b341-7a3b163e6851"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Response Body</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47d2004e-8e08-4fc3-b341-7a3b163e6851"</span><span class="w">
+    </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python train.py --architecture classic"</span><span class="w">
+    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"184762988669.dkr.ecr.eu-west-1.amazonaws.com/testai:latest"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pilot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processing_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">151474</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requisitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gpu"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ram"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"fitness_score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.56</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint gives you detailed information about the status of a particular job.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>The result is a completely customisable and user defined fitness report.</p>
+<h3 id='https-request-5'>HTTPs Request</h3>
+<p><code>GET https://api.singularity-technologies.io/job/{job_id}</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<aside class="info">Omit <code>job_id</code> to get all your batches</aside>
+<h2 id='cancel-a-job'>Cancel a Job</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X DELETE <span class="s2">"https://api.singularity-technologies.io/job/{job_id}"</span>
+</code></pre>
+<p>This endpoint will cancel a single job if it has not been processed yet.</p>
+<h3 id='https-request-6'>HTTPs Request</h3>
+<p><code>DELETE https://api.singularity-technologies.io/job/{job_id}</code></p>
+<h1 id='data'>Data</h1><h2 id='create-data-set'>Create Data Set</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X POST <span class="s2">"https://api.singularity-technologies.io/data -d @body.json"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Body</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clean_data_set"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pilot_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
+<blockquote>
+<p>Example Response Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clean_data_set"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dataset_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47c07222-d400-4970-9831-0abdfe24ff2a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pilot_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"47d2004e-8e08-4fc3-b341-7a3b163e6851"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"8b92bb5b-235d-4dae-8329-417303d56b9b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"e1baf151-89f2-44fb-bbc5-efe48cc21719"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"1521598f-74e0-4b30-8a23-7ceb77d021c9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"543c42c0-c375-442a-864a-8a05e01ce896"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cd2b0e33-ff79-4c5e-baf9-91ca57faba27"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"660084e1-ddd8-4c0b-a702-2db19b081e6a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b173b393-f62d-4938-a508-8369639298cd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"d6f02325-ab8d-47d1-a5b9-16cbe523753f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"507d088d-18ca-4681-a59b-671b1341efc4"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will create a blank data set and associated pilot sets.</p>
+<h3 id='https-request-7'>HTTPs Request</h3>
+<p><code>POST https://api.singularity-technologies.io/data</code></p>
+<h2 id='get-data-set'>Get Data Set</h2>
+<blockquote>
+<p>Example Response Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clean_data_set"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shard_count:"</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pilot_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"51fb3eea-daa5-432f-800a-b8997e48d24a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"8b92bb5b-235d-4dae-8329-417303d56b9b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"e1baf151-89f2-44fb-bbc5-efe48cc21719"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"1521598f-74e0-4b30-8a23-7ceb77d021c9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"543c42c0-c375-442a-864a-8a05e01ce896"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cd2b0e33-ff79-4c5e-baf9-91ca57faba27"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"660084e1-ddd8-4c0b-a702-2db19b081e6a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b173b393-f62d-4938-a508-8369639298cd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"d6f02325-ab8d-47d1-a5b9-16cbe523753f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"507d088d-18ca-4681-a59b-671b1341efc4"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows you to check the status of a data set and get a array of
+associated pilot data sets.</p>
+<h3 id='https-request-8'>HTTPs Request</h3>
+<p><code>POST https://api.singularity-technologies.io/data/{data_set_id}</code></p>
+<h2 id='upload-data-shard'>Upload Data Shard</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X POST <span class="s2">"https://api.singularity-technologies.io/data/clean-data-set/shard/e91c254ad58860a02c788dfb5c1a65d6a8846ab1dc649631c7db16fef4af2dec"</span> -d @shard<span class="s2">"
+</span></code></pre>
+<p>This endpoint accepts shard payloads and will assign each one to the parent data
+set and a random pilot sub set. A shard should be:</p>
+
+<ol>
+<li>No more that 10Mb in size.</li>
+<li>A base64 encoded zipfile of cleaned data that your model training script uses.</li>
+<li>A shard id should be generated as a SHA256 hash of its contents. If you omit the
+id, the api will generate one for you.</li>
+</ol>
+
+<p>Data shards are still a new concept within the factory system and may change in
+the future.</p>
+<h3 id='https-request-9'>HTTPs Request</h3>
+<p><code>POST https://api.singularity-technologies.io/data/{data_set_id}/shard/{shard_id}</code></p>
+<h1 id='models'>Models</h1><h2 id='download-a-model'>Download a model</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X GET <span class="s2">"https://api.singularity-technologies.io/model/47d2004e-8e08-4fc3-b341-7a3b163e6851"</span> &gt; super_model.zip
+</code></pre>
+<p>This endpoint streams all captured components of a trained model.</p>
+<h3 id='https-request-10'>HTTPs Request</h3>
+<p><code>GET https://api.singularity-technologies.io/model/{job_id}</code></p>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -450,36 +568,12 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Bad Request -- Your request is invalid.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Forbidden -- Your API key is wrong or HMAC signature does not match our check.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Method Not Allowed -- You tried to access an invalid method.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -495,9 +589,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
