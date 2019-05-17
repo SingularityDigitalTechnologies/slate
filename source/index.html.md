@@ -18,7 +18,7 @@ This is the Singularity Technologies Machine Learning factory API documentation.
 
 Here you will see examples on how to use our API using cURL.
 
-It is highly recomended to use the CLI (singularity-cli) to create and manage your workloads.
+It is highly recomended you use the CLI (singularity-cli) to create and manage your workloads.
 
 The documentation for our CLI can be found here: <cli_docs>
 
@@ -157,7 +157,6 @@ curl --header "X-singularity-apikey: key" --header "X-singularity-signature: sig
 }
 ```
 
-
 This endpoint creates a batch of machine learning model training jobs.
 
 ### HTTPs Request
@@ -232,7 +231,7 @@ The result is a completely customisable and user defined fitness report.
 ## Cancel a Job
 
 ```shell
-curl --header "X-singularity-apikey: key" --header "X-singularity-signature: signature" -X DELETE "https://api.singularity-technologies.io/job/{job_id}"
+curl --header "X-singularity-apikey: key" --header "X-singularity-signature: signature" -X DELETE "https://api.singularity-technologies.io/job/2762a3d0-beee-4f96-a88e-3301806741e4"
 ```
 
 This endpoint will cancel a single job if it has not been processed yet.
@@ -279,6 +278,11 @@ curl --header "X-singularity-apikey: key" --header "X-singularity-signature: sig
 }
 ```
 
+Parameter | Required | Description
+--------- | ------- | -----------
+name | true | Name of the data set
+pilot_count | true | How many pilot data sets to create and associate with the parent
+
 This endpoint will create a blank data set and associated pilot sets.
 
 ### HTTPs Request
@@ -286,6 +290,10 @@ This endpoint will create a blank data set and associated pilot sets.
 `POST https://api.singularity-technologies.io/data`
 
 ## Get Data Set
+
+```shell
+curl --header "X-singularity-apikey: key" --header "X-singularity-signature: signature" -X GET "https://api.singularity-technologies.io/data/clean-data-set"
+```
 
 > Example Response Body
 
@@ -335,6 +343,7 @@ the future.
 ### HTTPs Request
 
 `POST https://api.singularity-technologies.io/data/{data_set_id}/shard/{shard_id}`
+
 # Models
 
 ## Download a model
