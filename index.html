@@ -292,7 +292,7 @@
 
 <p>Here you will see examples on how to use our API using cURL.</p>
 
-<p>It is highly recomended to use the CLI (singularity-cli) to create and manage your workloads.</p>
+<p>It is highly recomended you use the CLI (singularity-cli) to create and manage your workloads.</p>
 
 <p>The documentation for our CLI can be found here: <cli_docs></p>
 
@@ -470,7 +470,7 @@ You must replace <code>key</code> and <code>signature</code> with your personal 
 <p><code>GET https://api.singularity-technologies.io/job/{job_id}</code></p>
 
 <aside class="info">Omit <code>job_id</code> to get all your batches</aside>
-<h2 id='cancel-a-job'>Cancel a Job</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X DELETE <span class="s2">"https://api.singularity-technologies.io/job/{job_id}"</span>
+<h2 id='cancel-a-job'>Cancel a Job</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X DELETE <span class="s2">"https://api.singularity-technologies.io/job/2762a3d0-beee-4f96-a88e-3301806741e4"</span>
 </code></pre>
 <p>This endpoint will cancel a single job if it has not been processed yet.</p>
 <h3 id='https-request-6'>HTTPs Request</h3>
@@ -505,10 +505,30 @@ You must replace <code>key</code> and <code>signature</code> with your personal 
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>true</td>
+<td>Name of the data set</td>
+</tr>
+<tr>
+<td>pilot_count</td>
+<td>true</td>
+<td>How many pilot data sets to create and associate with the parent</td>
+</tr>
+</tbody></table>
+
 <p>This endpoint will create a blank data set and associated pilot sets.</p>
 <h3 id='https-request-7'>HTTPs Request</h3>
 <p><code>POST https://api.singularity-technologies.io/data</code></p>
-<h2 id='get-data-set'>Get Data Set</h2>
+<h2 id='get-data-set'>Get Data Set</h2><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"X-singularity-apikey: key"</span> --header <span class="s2">"X-singularity-signature: signature"</span> -X GET <span class="s2">"https://api.singularity-technologies.io/data/clean-data-set"</span>
+</code></pre>
 <blockquote>
 <p>Example Response Body</p>
 </blockquote>
