@@ -204,7 +204,7 @@ curl --header "X-singularity-apikey: key" --header "X-singularity-signature: sig
   {
     "id": "47d2004e-8e08-4fc3-b341-7a3b163e6851"
     "command": "python train.py --architecture classic"
-    "image": "184762988669.dkr.ecr.eu-west-1.amazonaws.com/testai:latest",
+    "image": "singularitytechnologies/testai:latest",
     "mode": "pilot",
     "processing_time": 151474,
     "requisitions": {
